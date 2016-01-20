@@ -302,6 +302,7 @@
           <state>$PROJ_DIR$\..\HARDWARE\LED</state>
           <state>$PROJ_DIR$\..\HARDWARE\EWDT</state>
           <state>$PROJ_DIR$\..\SYSTEM</state>
+          <state>$PROJ_DIR$\..\APP</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1842,6 +1843,12 @@
       <data/>
     </settings>
   </configuration>
+  <group>
+    <name>APP</name>
+    <file>
+      <name>$PROJ_DIR$\..\APP\hw_test.c</name>
+    </file>
+  </group>
   <group>
     <name>FWLib</name>
     <group>

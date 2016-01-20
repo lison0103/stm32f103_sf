@@ -14,6 +14,7 @@
 #include "can.h"
 #include "led.h"
 #include "ewdt.h"
+#include "hw_test.h"
 
 extern u8 Slave_Temp;
 
@@ -102,20 +103,19 @@ int main(void)
      
      delay_init();
      
-        //外部看门狗初始化
-//        EWDT_Drv_pin_config();
-//        power_on_bsp_check();
+     LED_Init();
      
      
      
      
-#if 1     
+#if 0     
     spi1_test();
 #else
-  #if 1
+  #if 0
       can_test();
   #else
-      
+      HW_TEST_INIT();
+      HW_TEST();
   #endif
     
 #endif
