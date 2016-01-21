@@ -37,7 +37,7 @@ void HW_TEST_INIT(void)
       //output
       GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;             
       
-      GPIO_InitStruct.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_4; 
+      GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_2 | GPIO_Pin_4; 
       GPIO_Init(GPIOE , &GPIO_InitStruct);  
 
 }
@@ -49,6 +49,7 @@ void HW_TEST(void)
   
     AUX2_CTR = 0;
     SF_RL2_CTR = 0;
+    SF_RL2_WDT = 1;
     
     while(1)
     {
@@ -353,6 +354,7 @@ void HW_TEST(void)
         if(t==200)
         {
             LED=!LED;
+            SF_RL2_WDT=!SF_RL2_WDT;
             t=0;
         }        
         
