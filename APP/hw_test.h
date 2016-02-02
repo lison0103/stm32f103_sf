@@ -2,7 +2,8 @@
 #define __HW_TEST_H	
 
 void HW_TEST_INIT(void);
-void HW_TEST(void);
+void HW_TEST1(void);
+void HW_TEST2(void);
 
 
 //INPUT

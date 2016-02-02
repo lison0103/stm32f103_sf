@@ -32,9 +32,10 @@ void SPI1_Init(void)
 	SPI_InitStructure.SPI_CRCPolynomial = 7;	//CRC值计算的多项式
 	SPI_Init(SPI1, &SPI_InitStructure);  //根据SPI_InitStruct中指定的参数初始化外设SPIx寄存器
  
+        SPI_I2S_ITConfig(SPI1,SPI_I2S_IT_RXNE, ENABLE);
 	SPI_Cmd(SPI1, ENABLE); //使能SPI外设
 	
-	SPI1_ReadWriteByte(0xff);//启动传输		 
+//	SPI1_ReadWriteByte(0xff);//启动传输		 
 }   
 //SPI 速度设置函数
 //SpeedSet:

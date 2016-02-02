@@ -20,14 +20,32 @@ extern u8 Slave_Temp;
 
 void spi1_test(void)
 {
-     SPI1_Init(); //SPI1初始化
-     SPI1_SetSpeed(SPI_BaudRatePrescaler_256);//SPI速度两分频
-     SPI1_NVIC();   //设置抢占优先级为1，响应优先级为1
+     u8 t=0;
+     u8 data = 0;
+  
+//     SPI1_Init(); //SPI1初始化
+//     SPI1_SetSpeed(SPI_BaudRatePrescaler_256);//SPI速度两分频
+//     SPI1_NVIC();   //设置抢占优先级为1，响应优先级为1
      
      while(1)
      { 
-       printf("Slave_Temp=%x\r\n",Slave_Temp);
-       delay_ms(100); 
+//         printf("Slave_Temp=%x\r\n",Slave_Temp);
+       
+         HW_TEST2();
+         
+//         data = SPI1_ReadWriteByte(0xaa);
+         
+         t++; 
+         delay_ms(10);
+         if(t==20)
+         {
+           LED=!LED;//提示系统正在运行	
+           SF_RL2_WDT=!SF_RL2_WDT;
+           t=0;
+         }       
+       
+       
+//       delay_ms(100); 
      }
 
 }
@@ -43,13 +61,13 @@ void can_test(void)
 
 	 	
    
-	CAN_Mode_Init(CAN_SJW_2tq,CAN_BS2_5tq,CAN_BS1_3tq,20,mode);//CAN初始化环回模式,波特率180Kbps    
+	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,mode);//CAN初始化环回模式,波特率250Kbps    
 
 	
  	while(1)
 	{
 
-
+          
                 for(i=0;i<8;i++)
                 {
                   canbuf[i]=cnt+i;//填充发送缓冲区
@@ -90,20 +108,20 @@ int main(void)
      
      LED_Init();
      
+     HW_TEST_INIT();
      
      
-     
-#if 0     
-    spi1_test();
-#else
-  #if 1
-      can_test();
-  #else
-      HW_TEST_INIT();
-      HW_TEST();
-  #endif
     
-#endif
+    spi1_test();
+
+
+//      can_test();
+
+      
+//      HW_TEST1();
+      
+    
+
 
 }
 	   
